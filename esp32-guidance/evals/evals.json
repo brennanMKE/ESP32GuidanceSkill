@@ -1,0 +1,35 @@
+{
+  "skill_name": "esp32-guidance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm setting up an ESP32-C3 project with a 16x16 WS2812B LED matrix. I need to update colors every 100ms without blocking the rest of the code. Generate a minimal sketch that shows the EVERY_N_MILLIS pattern with multiple timing zones.",
+      "expected_output": "Sketch using EVERY_N_MILLIS macro with non-blocking timing. Should include setup() and loop() with FastLED. No delay() calls in loop. Unique IDs for each timer. Proper includes and serial setup.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have an ESP32-C3 that refuses to connect to my eero mesh network. It keeps timing out. Generate the WiFi setup code with the three-part compatibility fix and non-blocking polling. Include error handling and logging.",
+      "expected_output": "WiFi.mode(WIFI_STA) called first, then WiFi.setTxPower(WIFI_POWER_8_5dBm), then esp_wifi_set_protocol() with 802.11b/g. Non-blocking polling with watchdog reset and yield(). Proper includes (<esp_wifi.h>). ESP_LOGI and ESP_LOGE logging.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I'm starting a new ESP32-C3 project. Generate a platformio.ini with the correct build flags for USB CDC serial, and a minimal main.cpp that demonstrates dual logging (Serial + ESP-IDF) with proper log levels.",
+      "expected_output": "platformio.ini with ARDUINO_USB_MODE=1 and ARDUINO_USB_CDC_ON_BOOT=1. main.cpp with Serial.begin(115200), esp_log_level_set(), and multiple ESP_LOGI/ESP_LOGE calls with different log levels. No incorrect configuration.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I have a 0.42\" OLED display on an ESP32-C3 with SDA=5, SCL=6. The display address is 0x3C. Generate working code to initialize the OLED and display 'Hello World' centered on the visible glass area. Use U8g2.",
+      "expected_output": "Wire.begin(5, 6) with explicit pins, not defaults. U8G2_SSD1306_128X64 initialization. drawStr with X offset ~28 (not 0) to account for visible area on 0.42\" glass. setFont() call. Proper includes (<U8g2lib.h>, <Wire.h>).",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I'm building a sensor logger for my ESP32-C3. It needs to: 1) update sensor readings every 500ms, 2) log to serial and ESP-IDF every second, 3) attempt WiFi connection on startup. Generate the complete sketch with correct timing, logging, and WiFi setup. Use non-blocking patterns throughout.",
+      "expected_output": "Combines EVERY_N_MILLIS for sensor updates and logging, proper WiFi.mode()/setTxPower()/esp_wifi_set_protocol() sequence, non-blocking WiFi polling with watchdog, dual Serial+ESP-IDF logging, proper build flags referenced in comments. No blocking delays in loop(). Unique timer IDs.",
+      "files": []
+    }
+  ]
+}

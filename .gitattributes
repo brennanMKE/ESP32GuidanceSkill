@@ -1,0 +1,32 @@
+# Auto detect text files and normalize line endings
+* text=auto
+
+# Source code
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.ini text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.pdf binary
+
+# Documentation
+*.md diff=markdown
+README.md merge=union
+
+# Git files
+.gitignore export-ignore
+.gitattributes export-ignore

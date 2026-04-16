@@ -1,0 +1,47 @@
+# PlatformIO Build Artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+*.o
+*.a
+*.elf
+*.bin
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs & Temp
+*.log
+*.bak
+*.tmp
+*.swp
+
+# Skill Testing (iteration workspaces)
+*-workspace/
+iteration-*/
