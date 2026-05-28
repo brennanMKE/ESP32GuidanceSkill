@@ -23,7 +23,32 @@ This skill helps Claude generate correct, non-blocking ESP32 code aligned with y
 
 ## Installation
 
-### Quick Install from GitHub
+### Quick install (recommended) — `npx skills`
+
+Installs across supported AI coding agents (Claude Code, Codex, Cursor, and others)
+with one command:
+
+```bash
+npx skills add brennanMKE/ESP32GuidanceSkill --skill esp32-guidance
+```
+
+Target specific tools, or run non-interactively:
+
+```bash
+npx skills add brennanMKE/ESP32GuidanceSkill --skill esp32-guidance -a claude-code -a codex
+npx skills add brennanMKE/ESP32GuidanceSkill --skill esp32-guidance -a claude-code -g -y
+```
+
+> **Claude Code note:** if the skill installs but Claude Code doesn't see it, it
+> likely landed in `~/.agents/skills/` without a `~/.claude/skills/` symlink. Fix:
+> ```bash
+> ln -s ~/.agents/skills/esp32-guidance ~/.claude/skills/esp32-guidance
+> ```
+
+### Manual install — `install.sh`
+
+Clone the repo and run the installer. It links the skill into the global skills dir
+of every detected tool (Claude Code, Codex):
 
 ```bash
 git clone https://github.com/brennanMKE/ESP32GuidanceSkill.git
@@ -31,18 +56,38 @@ cd ESP32GuidanceSkill
 ./install.sh
 ```
 
-The installer will:
-1. Create `~/.claude/skills/esp32-guidance` directory
-2. Symlink it to the skill files in the repo
-3. Make the skill available in Claude Code
-
-### Manual Install
-
-If you prefer to clone into `~/.claude/skills` directly:
+Cursor has no global skills directory, so install it per project:
 
 ```bash
-git clone https://github.com/brennanMKE/ESP32GuidanceSkill.git ~/.claude/skills/esp32-guidance
+./install.sh --project /path/to/your/project   # links into <project>/.cursor/skills
 ```
+
+Install straight from git without a manual clone (caches and updates on re-run):
+
+```bash
+REPO_URL=https://github.com/brennanMKE/ESP32GuidanceSkill.git ./install.sh
+```
+
+Because `install.sh` uses symlinks, edits to the skill files are picked up without
+reinstalling.
+
+### Where skills live
+
+| Tool        | Global               | Project            |
+|-------------|----------------------|--------------------|
+| Claude Code | `~/.claude/skills/`  | `.claude/skills/`  |
+| Codex CLI   | `~/.codex/skills/`   | `.codex/skills/`   |
+| Cursor      | *(project only)*     | `.cursor/skills/`  |
+
+## Removal
+
+```bash
+rm ~/.claude/skills/esp32-guidance
+rm ~/.codex/skills/esp32-guidance
+rm /path/to/project/.cursor/skills/esp32-guidance
+```
+
+Removing a symlink leaves the source repo untouched.
 
 ## How It Works
 
